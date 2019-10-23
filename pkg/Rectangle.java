@@ -2,9 +2,13 @@
 package pkg;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.Toolkit;
+import java.awt.Dimension;
 
 public class Rectangle implements Shape
 {
+	private double screenHeight;
+	
     private Color color = Color.BLACK;
     private boolean filled = false;
 	private boolean show = false;
@@ -35,8 +39,17 @@ public class Rectangle implements Shape
     */
     public Rectangle(double x, double y, double width, double height)
     {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int resolution = Toolkit.getDefaultToolkit().getScreenResolution();
+		screenHeight = screenSize.getHeight();
+		double scale = 1;
+		if (resolution == 120) {
+			scale = 1.25;
+		}
+		// System.out.println(resolution);
+		
         this.x = x;
-        this.y = y;
+        this.y = screenHeight * scale - y;
         this.width = width;
         this.height = height;
 		rect = new Rectangle2D.Double(getX(), getY(), getWidth(), getHeight());
@@ -98,7 +111,7 @@ public class Rectangle implements Shape
     public void translate(double dx, double dy)
     {
         x += dx;
-        y += dy;
+        y -= dy;
         Canvas.getInstance().repaint();
     }
 

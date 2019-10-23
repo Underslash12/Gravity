@@ -16,6 +16,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import java.awt.event.WindowEvent;
+
 public class Canvas
 {
     private static Canvas canvas = new Canvas();
@@ -81,8 +83,10 @@ public class Canvas
             if (!System.getProperty("java.class.path").contains("bluej"))
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.add(component);
+			frame.setUndecorated(true);
             frame.pack();
             //frame.setLocation(LOCATION_OFFSET, LOCATION_OFFSET);
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             frame.setVisible(true);
         }
         else
@@ -117,6 +121,12 @@ public class Canvas
     {
         return canvas;
     }
+	
+	public void exit()
+	{
+		System.out.println("Exited");
+		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+	}
 	
     public void show(Shape s)
     {
@@ -211,12 +221,12 @@ public class Canvas
         // JOptionPane.showMessageDialog(frame, "Click Ok to continue");
     // }
 	
-		 public static void pause(int td) {
-	  try {
-		Thread.sleep(td);
-	  } catch(InterruptedException ex) {
-		Thread.currentThread().interrupt();
-	  }
+	public static void pause(int td) {
+	    try {
+			Thread.sleep(td);
+	    } catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+	    }
 	}
 
     /**
