@@ -8,7 +8,7 @@ import java.awt.Dimension;
 public class Rectangle implements Shape
 {
 	private double screenHeight;
-	
+
     private Color color = Color.BLACK;
     private boolean filled = false;
 	private boolean show = false;
@@ -16,7 +16,7 @@ public class Rectangle implements Shape
     private double y;
     private double width;
     private double height;
-	
+
 	private Rectangle2D.Double rect;
 
     /**
@@ -28,7 +28,7 @@ public class Rectangle implements Shape
         y = 0;
         width = 0;
         height = 0;
-    }       
+    }
 
     /**
        Constructs a rectangle.
@@ -47,9 +47,10 @@ public class Rectangle implements Shape
 			scale = 1.25;
 		}
 		// System.out.println(resolution);
-		
+
         this.x = x;
-        this.y = screenHeight * scale - y;
+        // this.y = screenHeight * scale - y;
+		this.y = screenHeight - y - height;
         this.width = width;
         this.height = height;
 		rect = new Rectangle2D.Double(getX(), getY(), getWidth(), getHeight());
@@ -76,7 +77,7 @@ public class Rectangle implements Shape
     /**
        Gets the width of this rectangle.
        @return the width
-    */    
+    */
     public int getWidth()
     {
         return (int) Math.round(width);
@@ -85,7 +86,7 @@ public class Rectangle implements Shape
     /**
        Gets the height of this rectangle.
        @return the height
-    */    
+    */
     public int getHeight()
     {
         return (int) Math.round(height);
@@ -102,7 +103,7 @@ public class Rectangle implements Shape
 		// }
 		// return false;
 	}
-	
+
     /**
        Moves this rectangle by a given amount.
        @param dx the amount by which to move in x-direction
@@ -138,7 +139,7 @@ public class Rectangle implements Shape
         color = newColor;
         Canvas.getInstance().repaint();
     }
-	
+
 	public Color getColor()
 	{
 		return color;
@@ -152,7 +153,7 @@ public class Rectangle implements Shape
         filled = false;
         Canvas.getInstance().show(this);
     }
-	
+
 	public void undraw()
 	{
 		Canvas.getInstance().delete(this);
@@ -175,7 +176,7 @@ public class Rectangle implements Shape
     public void paintShape(Graphics2D g2)
     {
 		rect = new Rectangle2D.Double(getX(), getY(), getWidth(), getHeight());
-        g2.setColor(new java.awt.Color((int) color.getRed(), (int) color.getGreen(), (int) color.getBlue()));
+        g2.setColor(new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue()));
         if (filled)
         {
             g2.fill(rect);

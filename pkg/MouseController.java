@@ -19,51 +19,51 @@ public class MouseController{
         this.c.frame.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-				int x = e.getX()-8;
-                int y = e.getY()-31;
+				int x = e.getX();
+                int y = e.getY();
                 iC.onMouseClick(x,y);
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-				int x = e.getX()-8;
-                int y = e.getY()-31;
+				int x = e.getX();
+                int y = e.getY();
                 iC.onMousePress(x,y);
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-				int x = e.getX()-8;
-                int y = e.getY()-31;
+				int x = e.getX();
+                int y = e.getY();
                 iC.onMouseRelease(x,y);
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-				int x = e.getX()-8;
-                int y = e.getY()-31;
+				int x = e.getX();
+                int y = e.getY();
                 iC.onMouseEnter(x,y);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-				int x = e.getX()-8;
-                int y = e.getY()-31;
+				int x = e.getX();
+                int y = e.getY();
                 iC.onMouseExit(x,y);
             }
         });
 		this.c.frame.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-				int x = e.getX()-8;
-                int y = e.getY()-31;
+				int x = e.getX();
+                int y = e.getY();
 				iC.onMouseDrag(x,y);
             }
 
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				int x = e.getX()-8;
-                int y = e.getY()-31;
+				int x = e.getX();
+                int y = e.getY();
 				iC.onMouseMove(x,y);
 			}
         });
